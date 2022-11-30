@@ -6,7 +6,12 @@ import { FD, Next, Data} from 'ypipe';
 export const DEBUG = {v: false};
 
 emitKeypressEvents(process.stdin);
-process.stdin.setRawMode(true);
+try{
+    process.stdin.setRawMode(true);
+}catch(err){
+    console.log('this is for jest tests');
+}
+
 
 export const w = (files: string[]) => (next: Next, pipe: FD[], data: Data ) => {
 
