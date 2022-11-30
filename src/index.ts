@@ -3,13 +3,12 @@ import { emitKeypressEvents } from 'node:readline';
 
 import { FD, Next, Data} from 'ypipe';
 
-export const SHOW_QUIT_MESSAGE = {v: false};
 export const DEBUG = {v: false};
 
 emitKeypressEvents(process.stdin);
 process.stdin.setRawMode(true);
 
-export default (files: string[]) => (next: Next, pipe: FD[], data: Data ) => {
+export const w = (files: string[]) => (next: Next, pipe: FD[], data: Data ) => {
 
     const quit = data.ctx.close;
 
@@ -56,9 +55,8 @@ export default (files: string[]) => (next: Next, pipe: FD[], data: Data ) => {
         try{
             data = {data: data.data, ctx: {close}};
             await next(pipe, data);
-            if(SHOW_QUIT_MESSAGE.v)
-                // eslint-disable-next-line no-console
-                console.log("Press " + q + " to quit!");
+            // eslint-disable-next-line no-console
+            console.log("Press " + q + " to quit!");
         }catch(err){
             //
         }

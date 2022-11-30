@@ -1,6 +1,6 @@
 {
   "name": "ypipe-watch",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "description": "watch plugin for ypipe",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
